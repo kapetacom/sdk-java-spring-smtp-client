@@ -5,6 +5,7 @@
 package com.kapeta.spring.smtp;
 
 import com.kapeta.spring.config.providers.KapetaConfigurationProvider;
+import com.kapeta.spring.config.providers.types.ResourceInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -24,7 +25,7 @@ public class SMTPConfig {
     @Bean
     public JavaMailSender javaMailSender(KapetaConfigurationProvider configurationProvider) {
 
-        final KapetaConfigurationProvider.ResourceInfo info = configurationProvider.getResourceInfo(RESOURCE_TYPE, PORT_TYPE, RESOURCE_NAME);
+        final ResourceInfo info = configurationProvider.getResourceInfo(RESOURCE_TYPE, PORT_TYPE, RESOURCE_NAME);
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(info.getHost());
         mailSender.setPort(Integer.parseInt(info.getPort()));
